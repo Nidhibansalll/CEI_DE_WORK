@@ -129,6 +129,8 @@ Pending    →  1 order   →  ₹1,299  revenue
 - ShopEase Database (custom schema)
 ---
 
+### Author
+NIDHI BANSAL
 ⭐ *Star this repo if you found it helpful!*
 
 
