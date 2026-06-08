@@ -41,7 +41,8 @@ CELEBAL_ASSIGNMENTS/
 │   ├── CELEBAL_WEEK-3.sql          # Advanced SQL — CTEs, Subqueries, Window Functions
 │   └── readme.md
 │
-└── README.md                      
+└── README.md
+```                
 ---
 
 ## 📅 Weekly Progress
