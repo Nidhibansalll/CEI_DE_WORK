@@ -24,7 +24,7 @@ Data Engineering Intern — Celebal Technologies
 ```
 CELEBAL_ASSIGNMENTS/
 │
-├── Week-01-/
+├── Week-01/
 │   ├── CELEBAL_WEEK-1.ipynb        # Jupyter notebook 
 │   ├── Combined_dataset.csv        # Original raw dataset
 │   ├── Combined_dataset_CLEANED.csv # Cleaned output
