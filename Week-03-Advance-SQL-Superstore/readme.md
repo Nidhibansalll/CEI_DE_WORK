@@ -1,6 +1,5 @@
 # 📅 Week 03 — Advanced SQL: Superstore Sales Analysis
 
-> *"Good data analysis isn't just about writing queries — it's about asking the right questions."*
 
 ## 🎯 Objective
 Dive deep into the **Sample Superstore dataset** using advanced SQL techniques —
