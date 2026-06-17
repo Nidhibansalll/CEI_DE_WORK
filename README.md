@@ -22,7 +22,7 @@ Data Engineering Intern — Celebal Technologies
 ## 📁 Repository Structure
 
 ```
-CELEBAL_ASSIGNMENTS/
+CEI_DE_WORK/
 │
 ├── Week-01/
 │   ├── CELEBAL_WEEK-1.ipynb        # Jupyter notebook 
