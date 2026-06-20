@@ -4,7 +4,7 @@
 ![Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 ![ADF](https://img.shields.io/badge/Azure_Data_Factory-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 ![Blob Storage](https://img.shields.io/badge/Azure_Blob_Storage-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)
-![Status](https://img.shields.io/badge/Pipeline-Succeeded%20✅-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Pipeline%20✅-brightgreen?style=for-the-badge)
 
 ---
 
@@ -50,7 +50,7 @@ To build a scalable data integration solution by deploying Azure cloud infrastru
 [Dataset: ds_DestinationCSV]
         |
         ▼
-[Blob Container: destination-data/output_superstore.csv] ✅
+[Blob Container: destination-data/output_superstore.csv] 
 ```
 
 ---
