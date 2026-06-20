@@ -162,7 +162,7 @@ WEEK-4-azure-adf-pipeline/
 │   ├── 5-pipeline execution.png
 │   ├── 6-Roles.png
 │   └── output.png
-└── data/
+└── Datasets/
     └── Sample - Superstore.csv
 ```
 
