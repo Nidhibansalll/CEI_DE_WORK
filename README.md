@@ -53,7 +53,9 @@ CEI_DE_WORK/
 │   │   ├── 5-pipeline execution.png
 │   │   ├── 6-Roles.png
 │   │   └── output.png
-│   └── readme.md
+└── Datasets/
+    └── Sample - Superstore.csv
+│   └── Readme.md
 │
 └── README.md
 ```                
