@@ -2,7 +2,7 @@
 
 # ⚡ Spark Basics — Data Cleaning, Transformation & Aggregation
 
-### *Week 5 Assignment — Big Data Analytics*
+### *Week 5 Assignment — Spark*
 
 ![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.x-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -138,6 +138,5 @@ spark-assignment/
 **Nidhi Bansal**
 Data Engineer Intern at Celebal Technologies
 
-*Big Data Analytics — Week 5 Assignment*
 
 </div>
