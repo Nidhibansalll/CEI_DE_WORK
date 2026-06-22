@@ -25,27 +25,31 @@ Data Engineering Intern — Celebal Technologies
 CEI_DE_WORK/
 │
 ├── Week-01/
-│   ├── CELEBAL_WEEK-1.ipynb        # Jupyter notebook 
-│   ├── Combined_dataset.csv        # Original raw dataset
-│   ├── Combined_dataset_CLEANED.csv # Cleaned output
-│   └── readme.md
+│   ├── CELEBAL_WEEK-1.ipynb
+│   ├── Combined_dataset.csv
+│   ├── Combined_dataset_CLEANED.csv
+│   └── README.md
 │
 ├── Week-02-SQL-Sales-Analysis/
-│   ├── CELEBAL_WEEK-2.sql          # Full SQL script 
-│   ├── Q23.png                     # Query result screenshot
-│   ├── Q5.png                      # Query result screenshot
-│   ├── Q6.png                      # Query result screenshot
-│   └── readme.md
+│   ├── CELEBAL_WEEK-2.sql
+│   ├── Q23.png
+│   ├── Q5.png
+│   ├── Q6.png
+│   └── README.md
 │
 ├── Week-03-Advance-SQL-Superstore/
-│   ├── CELEBAL_WEEK-3.sql          # Advanced SQL — CTEs, Subqueries, Window Functions
-│   └── readme.md
-├── WEEK-4-azure-adf-pipeline/
-│   ├── screenshot/
+│   ├── CELEBAL_WEEK-3.sql
+│   └── README.md
+│
+├── Week-04-Azure-ADF-Pipeline/
+│   ├── dataset/
+│   │   └── Sample - Superstore.csv
+│   │
+│   ├── screenshots/
 │   │   ├── 1-Resource Group.png
 │   │   ├── 2-Storage Setup.png
-│   │   ├── 2- csv uploaded.png
-│   │   ├── 3- linked.png
+│   │   ├── 2-csv uploaded.png
+│   │   ├── 3-linked.png
 │   │   ├── 3-source.png
 │   │   ├── 3-destination.png
 │   │   ├── 3-metadata.png
@@ -53,17 +57,18 @@ CEI_DE_WORK/
 │   │   ├── 5-pipeline execution.png
 │   │   ├── 6-Roles.png
 │   │   └── output.png
-└── Datasets/
-|   └── Sample - Superstore.csv
-│   └── Readme.md
-│Week-5 Spark-assignment/
-├── data/
-│   └── dataset.csv        
-├── notebook/
-│   └── spark_basics.ipynb   
-├── output/
-│   └── results.csv          
-└── README.md                
+│   │
+│   └── README.md
+│
+├── Week-05-Spark-Assignment/
+│   ├── data/
+│   │   └── dataset.csv
+│   ├── notebook/
+│   │   └── spark_basics.ipynb
+│   ├── output/
+│   │   └── results.csv
+│   └── README.md
+│
 └── README.md
 ```                
 ---
@@ -76,7 +81,7 @@ CEI_DE_WORK/
 | Week 02 | SQL Sales Analysis | SELECT, JOINs, Aggregation, Transactions, ACID | MySQL Workbench |  |
 | Week 03 | Advanced SQL — Superstore | Subqueries, CTEs, Window Functions, RANK | MySQL Workbench |  |
 | Week 04 | Azure Cloud & ADF Pipeline | Blob Storage, ADF, Linked Services, IAM, ETL Pipeline| Microsoft Azure |  |
-| Week 05 | Spark-assignment | Apache Spark — DataFrame cleaning, transformation & aggregation| Python, Jupyter  |  |
+| Week 05 | Spark-assignment | Apache Spark — DataFrame cleaning, transformation & aggregation| Python, Jupyter,Spark  |  |
 
 
 ---
