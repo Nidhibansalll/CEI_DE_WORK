@@ -133,7 +133,7 @@ spark-assignment/
 
 <div align="center">
 
-### 👩‍💻 Author
+## 👩‍💻 Author
 
 **Nidhi Bansal**
 Data Engineer Intern at Celebal Technologies
