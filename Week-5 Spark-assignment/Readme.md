@@ -79,7 +79,7 @@ The notebook covers:
 ## 📂 Repo Structure
 
 ```
-spark-assignment/
+Week-5 Spark-assignment/
 ├── data/
 │   └── dataset.csv          # 1000-row messy dataset
 ├── notebook/
