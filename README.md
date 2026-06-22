@@ -15,7 +15,7 @@
 **Nidhi Bansal**  
 Data Engineering Intern — Celebal Technologies  
 📍 Jaipur, Rajasthan, India  
-🛠️ Python | SQL | MySQL | Pandas | Jupyter Notebook
+🛠️ Python | SQL | MySQL | Pandas | Jupyter Notebook| ADF
 
 ---
 
@@ -54,9 +54,16 @@ CEI_DE_WORK/
 │   │   ├── 6-Roles.png
 │   │   └── output.png
 └── Datasets/
-    └── Sample - Superstore.csv
+|   └── Sample - Superstore.csv
 │   └── Readme.md
-│
+│Week-5 Spark-assignment/
+├── data/
+│   └── dataset.csv        
+├── notebook/
+│   └── spark_basics.ipynb   
+├── output/
+│   └── results.csv          
+└── README.md                
 └── README.md
 ```                
 ---
@@ -69,6 +76,8 @@ CEI_DE_WORK/
 | Week 02 | SQL Sales Analysis | SELECT, JOINs, Aggregation, Transactions, ACID | MySQL Workbench |  |
 | Week 03 | Advanced SQL — Superstore | Subqueries, CTEs, Window Functions, RANK | MySQL Workbench |  |
 | Week 04 | Azure Cloud & ADF Pipeline | Blob Storage, ADF, Linked Services, IAM, ETL Pipeline| Microsoft Azure |  |
+| Week 05 | Spark-assignment | Apache Spark — DataFrame cleaning, transformation & aggregation| Python, Jupyter  |  |
+
 
 ---
 
@@ -100,6 +109,14 @@ CEI_DE_WORK/
 - Validated file metadata (itemName, size, columnCount) before triggering data copy
 - Successfully copied data to destination container — output_superstore.csv 
 - Implemented RBAC with Reader, Contributor, and Storage Blob Data Contributor roles
+
+ ### 📌 Week 5 Spark Assignment 
+ 
+- Set up an Apache Spark (PySpark) environment and loaded a 1000-row e-commerce dataset into Spark DataFrames.
+- Cleaned real-world messy data by removing duplicates, handling null values, filling missing fields, and filtering invalid records.
+- Applied DataFrame transformations such as filtering, renaming columns, type casting, and selecting relevant data.
+- Performed aggregations using count(), sum(), avg(), min(), and max(), along with groupBy() operations.
+- Built a complete Spark pipeline combining data cleaning, transformation, and revenue aggregation by store.
 ---
 ## 📊 Skills Gained So Far
 
@@ -114,8 +131,12 @@ CEI_DE_WORK/
 |☁️ Azure Cloud | Resource Groups, Blob Storage, Storage Accounts, IAM |
 |🔄ADF (ETL)| Linked Services, Datasets, Pipelines, Get Metadata, Copy Data|
 |🔑 Security| RBAC, Managed Identity, Role Assignments, PoLP|
-|🛠️ Tools| MySQL Workbench 8.0, Jupyter Notebook, GitHub, Azure Portal|
-
+|⚡ Apache Spark (PySpark)|	SparkSession, DataFrames, Distributed Processing, In-Memory Computing|
+|🧹 Data Processing|	Data Cleaning, Deduplication, Null Handling, Data Validation|
+|🔄 Data Transformation|	Filtering, Column Renaming, Type Casting, DataFrame Transformations|
+|📊 Data Analysis|	Aggregations (SUM, AVG, MIN, MAX, COUNT), GroupBy Operations|
+|⚙️ Big Data Concepts|	MapReduce vs Spark, Narrow & Wide Transformations, Shuffle Operations|
+|🚀 ETL Pipelines	|End-to-End Data Cleaning, Transformation, Aggregation Workflows|
 ---
 
 ## 🧠 Learnings & Reflections
@@ -129,6 +150,8 @@ CEI_DE_WORK/
 - Learned how ADF Linked Services decouple connection logic from pipeline logic
 - Experienced how metadata-driven pipelines make ETL workflows dynamic and fault-tolerant
 - Applied Principle of Least Privilege using Azure IAM role assignments in a real cloud environment
+- Developed a strong understanding of Apache Spark's DataFrame operations, including data cleaning, transformation, aggregation, and building efficient data-processing pipelines on large datasets.
+- This assignment provided practical experience in handling real-world messy data and demonstrated how proper data cleaning and transformation are essential for producing accurate and meaningful analytical results
 
 ---
 
@@ -144,7 +167,6 @@ CEI_DE_WORK/
 ---
 
 ## 📬 Connect With Me
-
 Feel free to connect if you're also on this journey or want to discuss data engineering!
 
 ⭐ **Star this repo** if you find it helpful — it motivates me to keep going!
