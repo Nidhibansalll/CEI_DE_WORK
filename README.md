@@ -68,6 +68,11 @@ CEI_DE_WORK/
 │   ├── output/
 │   │   └── results.csv
 │   └── README.md
+├── Week-06 Apache_Spark/
+│   ├── Data/
+│   │   └── source.csv
+│   ├── Week_06_Apache_Spark.ipynb
+│   └── README.md
 │
 └── README.md
 ```                
@@ -82,7 +87,7 @@ CEI_DE_WORK/
 | Week 03 | Advanced SQL — Superstore | Subqueries, CTEs, Window Functions, RANK | MySQL Workbench |  |
 | Week 04 | Azure Cloud & ADF Pipeline | Blob Storage, ADF, Linked Services, IAM, ETL Pipeline| Microsoft Azure |  |
 | Week 05 | Spark-assignment | Apache Spark — DataFrame cleaning, transformation & aggregation| Python, Jupyter,Spark  |  |
-
+| Week 06 | Apache Spark — Architecture & Pipelines | Spark Architecture, Lazy Evaluation, Lineage Graph, CSV vs Parquet, Predicate Pushdown, Read→Transform→Filter→Write Pipeline | Python, Jupyter, PySpark |  |
 
 ---
 
@@ -122,6 +127,15 @@ CEI_DE_WORK/
 - Applied DataFrame transformations such as filtering, renaming columns, type casting, and selecting relevant data.
 - Performed aggregations using count(), sum(), avg(), min(), and max(), along with groupBy() operations.
 - Built a complete Spark pipeline combining data cleaning, transformation, and revenue aggregation by store.
+
+  ### 📌 Week 06 — Apache Spark (Architecture & Pipelines)
+- Studied Spark's core architecture — roles of the **Driver**, **Cluster Manager**, and **Executors** — and the difference between **Client Mode** and **Cluster Mode**
+- Explained **Lazy Evaluation** and how Spark builds an optimized execution plan (DAG) before running any job
+- Understood how Spark uses the **Lineage Graph** for fault tolerance — recomputing only lost partitions instead of restarting the whole job on node failure
+- Compared **CSV vs Parquet** storage (row-based vs columnar) and explained **Predicate Pushdown** in Parquet for reduced memory usage
+- Tested all DataFrame operations on a custom **1000-row dataset** — filtering, renaming columns, type casting, multi-condition filters (AND/OR), and derived columns
+- Built a complete **read → transform → filter → write pipeline**: loaded Parquet, removed null `user_id` rows, and saved clean output as CSV
+- Practiced best practices for large datasets — avoided `.collect()`, used `.show(5)` for safe data exploration
 ---
 ## 📊 Skills Gained So Far
 
@@ -142,6 +156,8 @@ CEI_DE_WORK/
 |📊 Data Analysis|	Aggregations (SUM, AVG, MIN, MAX, COUNT), GroupBy Operations|
 |⚙️ Big Data Concepts|	MapReduce vs Spark, Narrow & Wide Transformations, Shuffle Operations|
 |🚀 ETL Pipelines	|End-to-End Data Cleaning, Transformation, Aggregation Workflows|
+|🏗️ Spark Architecture| Driver, Cluster Manager, Executors, Client vs Cluster Mode, Lineage Graph (DAG)|
+|📦 File Formats| CSV vs Parquet, Columnar Storage, Predicate Pushdown|
 ---
 
 ## 🧠 Learnings & Reflections
@@ -156,7 +172,13 @@ CEI_DE_WORK/
 - Experienced how metadata-driven pipelines make ETL workflows dynamic and fault-tolerant
 - Applied Principle of Least Privilege using Azure IAM role assignments in a real cloud environment
 - Developed a strong understanding of Apache Spark's DataFrame operations, including data cleaning, transformation, aggregation, and building efficient data-processing pipelines on large datasets.
-- This assignment provided practical experience in handling real-world messy data and demonstrated how proper data cleaning and transformation are essential for producing accurate and meaningful analytical results
+- This assignment provided practical experience in handling real-world messy data and demonstrated how proper data cleaning and transformation are essential for producing accurate and meaningful analytical results.
+- Understood why **lazy evaluation** matters — Spark optimizes the entire chain of transformations before execution instead of running each step blindly
+- Realized that Spark's fault tolerance comes from its **lineage graph**, not data replication — failed partitions are simply recomputed from their transformation history
+- Learned practically why **Parquet outperforms CSV** for analytics — columnar storage means only required columns get read off disk
+- Understood **predicate pushdown** — filtering at the storage layer itself reduces the amount of data pulled into memory
+- Built the habit of using `.show()` instead of `.collect()` — a small change in approach that matters a lot once datasets scale to production size
+
 
 ---
 
@@ -168,6 +190,7 @@ CEI_DE_WORK/
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
 ![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=flat&logo=microsoft-azure&logoColor=white)
 ![Azure Data Factory](https://img.shields.io/badge/Azure_Data_Factory-0078D4?style=flat&logo=microsoft-azure&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=flat&logo=apachespark&logoColor=white)
 
 ---
 
