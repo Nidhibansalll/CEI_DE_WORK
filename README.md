@@ -41,7 +41,7 @@ CEI_DE_WORK/
 │   ├── CELEBAL_WEEK-3.sql
 │   └── README.md
 │
-├── Week-04-Azure-ADF-Pipeline/
+├── Week-04- DE Concepts/
 │   ├── dataset/
 │   │   └── Sample - Superstore.csv
 │   │
@@ -68,6 +68,7 @@ CEI_DE_WORK/
 │   ├── output/
 │   │   └── results.csv
 │   └── README.md
+|
 ├── Week-06 Apache_Spark/
 │   ├── Data/
 │   │   └── source.csv
