@@ -19,9 +19,6 @@ Data Engineering Intern — Celebal Technologies
 
 ---
 
-## 📁 Repository Structure
-
-```
 CEI_DE_WORK/
 │
 ├── Week-01/
@@ -41,7 +38,7 @@ CEI_DE_WORK/
 │   ├── CELEBAL_WEEK-3.sql
 │   └── README.md
 │
-├── Week-04- DE Concepts/
+├── Week-04-DE-Concepts/
 │   ├── dataset/
 │   │   └── Sample - Superstore.csv
 │   │
@@ -56,9 +53,8 @@ CEI_DE_WORK/
 │   │   ├── 4-pipeline design.png
 │   │   ├── 5-pipeline execution.png
 │   │   ├── 6-Roles.png
-│   │   └── output.png
-│   │
-│   └── README.md
+│   │   ├── output.png
+│   │   └── README.md
 │
 ├── Week-05-Spark-Assignment/
 │   ├── data/
@@ -68,16 +64,35 @@ CEI_DE_WORK/
 │   ├── output/
 │   │   └── results.csv
 │   └── README.md
-|
-├── Week-06 Apache_Spark/
+│
+├── Week-06-Apache-Spark/
 │   ├── Data/
 │   │   └── source.csv
 │   ├── Week_06_Apache_Spark.ipynb
 │   └── README.md
 │
+├── Week-07-delta-lake-assignment/
+│   ├── datasets/
+│   │   ├── Sample - Superstore.csv
+│   │   ├── customer_master.csv
+│   │   └── customer_incremental.csv
+│   │
+│   ├── notebook/
+│   │   └── delta_scd_assignment.ipynb
+│   │
+│   ├── screenshots/
+│   │   ├── 01_Load_Dataset.png
+│   │   ├── 02_Data_Cleaning.png
+│   │   ├── 03_Save_Delta_Table.png
+│   │   ├── 04_Read_Delta_Table.png
+│   │   ├── 05_Create_Incremental_Data.png
+│   │   ├── 06_Merge_Result.png
+│   │   ├── 07_Validation.png
+│   │   └── Final_Output.png
+│   │
+│   └── README.md
+│
 └── README.md
-```                
----
 
 ## 📅 Weekly Progress
 
@@ -89,7 +104,7 @@ CEI_DE_WORK/
 | Week 04 | Azure Cloud & ADF Pipeline | Blob Storage, ADF, Linked Services, IAM, ETL Pipeline| Microsoft Azure |  |
 | Week 05 | Spark-assignment | Apache Spark — DataFrame cleaning, transformation & aggregation| Python, Jupyter,Spark  |  |
 | Week 06 | Apache Spark — Architecture & Pipelines | Spark Architecture, Lazy Evaluation, Lineage Graph, CSV vs Parquet, Predicate Pushdown, Read→Transform→Filter→Write Pipeline | Python, Jupyter, PySpark |  |
-
+| Week 07 | Delta Lake (SCD Type-1) | Delta Tables, ACID Transactions, MERGE INTO, Incremental Loading, SCD Type-1 | Apache Spark, Delta Lake, Databricks |
 ---
 
 ## 🔑 Key Highlights
@@ -137,6 +152,18 @@ CEI_DE_WORK/
 - Tested all DataFrame operations on a custom **1000-row dataset** — filtering, renaming columns, type casting, multi-condition filters (AND/OR), and derived columns
 - Built a complete **read → transform → filter → write pipeline**: loaded Parquet, removed null `user_id` rows, and saved clean output as CSV
 - Practiced best practices for large datasets — avoided `.collect()`, used `.show(5)` for safe data exploration
+
+
+### 📌 Week 07 — Delta Lake (SCD Type-1)
+
+- Built an end-to-end **Delta Lake pipeline** using Apache Spark and Delta Lake.
+- Loaded the customer master dataset and stored it as a **Delta Table**.
+- Performed data validation by checking for null values and duplicate records before processing.
+- Created an incremental (CDC-style) dataset containing both updated existing customers and new customer records.
+- Applied **MERGE INTO** to implement **Slowly Changing Dimension (SCD Type-1)** by updating existing rows and inserting new ones atomically.
+- Validated the final Delta table by verifying row counts, updates, inserts, and duplicate-free primary keys.
+- Demonstrated Delta Lake features including **ACID Transactions**, **Schema Enforcement**, and efficient incremental data processing.
+  
 ---
 ## 📊 Skills Gained So Far
 
@@ -159,6 +186,8 @@ CEI_DE_WORK/
 |🚀 ETL Pipelines	|End-to-End Data Cleaning, Transformation, Aggregation Workflows|
 |🏗️ Spark Architecture| Driver, Cluster Manager, Executors, Client vs Cluster Mode, Lineage Graph (DAG)|
 |📦 File Formats| CSV vs Parquet, Columnar Storage, Predicate Pushdown|
+| 🏞️ Delta Lake | Delta Tables, ACID Transactions, MERGE INTO, Schema Enforcement |
+| 🔄 Incremental Processing | CDC, Upserts, SCD Type-1, Delta Merge Operations |
 ---
 
 ## 🧠 Learnings & Reflections
@@ -179,6 +208,12 @@ CEI_DE_WORK/
 - Learned practically why **Parquet outperforms CSV** for analytics — columnar storage means only required columns get read off disk
 - Understood **predicate pushdown** — filtering at the storage layer itself reduces the amount of data pulled into memory
 - Built the habit of using `.show()` instead of `.collect()` — a small change in approach that matters a lot once datasets scale to production size
+- Learned the real difference between running separate UPDATE/INSERT operations vs. Delta Lake's MERGE INTO, which does both atomically in a single transaction — no risk of partial writes.
+- Understood that a Delta table is not just Parquet with a different name — re-reading the table after write proved the ACID durability guarantee in practice, not just in theory.
+- Realized that clean data isn't a failure of the exercise — reporting an honest "0 nulls, 0 duplicates" result is still a valid, necessary validation step.
+- Practiced designing a realistic incremental (CDC-style) batch — a mix of updated existing rows and genuinely new rows, rather than arbitrary random data.
+- Learned that validation is what makes a pipeline trustworthy — checking exact row counts and duplicate keys after merge is what proves the operation worked, not just an assumption.
+- Understood why working at the natural row-level grain of a dataset (rather than forcing an aggregation the task didn't ask for) keeps a MERGE pipeline simpler and closer to real-world usage.
 
 
 ---
@@ -192,6 +227,7 @@ CEI_DE_WORK/
 ![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=flat&logo=microsoft-azure&logoColor=white)
 ![Azure Data Factory](https://img.shields.io/badge/Azure_Data_Factory-0078D4?style=flat&logo=microsoft-azure&logoColor=white)
 ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=flat&logo=apachespark&logoColor=white)
+![Azure Databricks](https://img.shields.io/badge/Azure_Databricks-FF3621?style=flat&logo=databricks&logoColor=white).
 
 ---
 
