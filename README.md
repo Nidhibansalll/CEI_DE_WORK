@@ -18,7 +18,7 @@ Data Engineering Intern — Celebal Technologies
 🛠️ Python | SQL | MySQL | Pandas | Jupyter Notebook| ADF
 
 ---
-
+```text
 CEI_DE_WORK/
 │
 ├── Week-01/
