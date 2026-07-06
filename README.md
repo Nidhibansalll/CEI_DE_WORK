@@ -72,7 +72,7 @@ CEI_DE_WORK/
 │   └── README.md
 │
 ├── Week-07-delta-lake-assignment/
-│   ├── datasets/
+│   ├── Datasets/
 │   │   ├── Sample - Superstore.csv
 │   │   ├── customer_master.csv
 │   │   └── customer_incremental.csv
