@@ -93,7 +93,7 @@ CEI_DE_WORK/
 │   └── README.md
 │
 └── README.md
-'''
+```
 ## 📅 Weekly Progress
 
 | Week | Topic | Concepts Covered | Tools |  |
