@@ -4,7 +4,6 @@
 ![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
 ![Delta Lake](https://img.shields.io/badge/Delta%20Lake-00ADD8?style=for-the-badge&logo=delta&logoColor=white)
 ![SQL](https://img.shields.io/badge/SparkSQL-4479A1?style=for-the-badge&logo=databricks&logoColor=white)
-![Status](https://img.shields.io/badge/status-complete-2EA44F?style=for-the-badge)
 
 **PySpark · SparkSQL · Delta Lake · Databricks**
 
@@ -18,7 +17,7 @@ with deduplication, a streaming ingestion with Auto Loader, and a MERGE-based fi
 | **Track** | Data Engineering Internship |
 | **Platform** | Databricks (Unity Catalog Volumes) |
 | **Notebook** | `Major_Project_Retail_Stream.ipynb` |
-| **Report** | `RetailStream_Project_Report.docx` / `.pdf` |
+| **Report** | `RetailStream_Project_Report.pdf` |
 
 ---
 
@@ -133,5 +132,3 @@ project like this possible.
 
 ---
 
-*Part of [`CEI_DE_WORK`](https://github.com/Nidhibansalll/CEI_DE_WORK) — my Data Engineering internship
-coursework and projects.*
