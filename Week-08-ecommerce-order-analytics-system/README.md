@@ -37,9 +37,10 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
 | 🥉 **Bronze** (raw) | Untouched, messy generated data — the "as received from source" layer | `data/raw/` |
 | 🥈 **Silver** (cleaned) | Validated, deduplicated, standardized data — safe to build reports on | `data/cleaned/` |
 | 🥇 **Gold** (analytics) | Query-ready SQLite warehouse + business-level SQL outputs | `ecommerce.db`, `sql/` |
-```
-┌─────────────────────┐
-                │   generate_data.py   │   Creates messy sample data
+
+```text
+                 ┌─────────────────────┐
+                │   generate_data.py   │   
                 └──────────┬───────────┘
                            ▼
              🥉 data/raw/*.csv  (BRONZE)
@@ -50,14 +51,14 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
                 - duplicate rows
                            │
                 ┌──────────▼───────────┐
-                │    clean_data.py      │   Fixes / flags issues
+                │    clean_data.py      │   
                 └──────────┬───────────┘
                            ▼
           🥈 data/cleaned/*.csv  (SILVER)
           + output/data_quality_report.txt
                            │
                 ┌──────────▼───────────┐
-                │     load_db.py        │   Loads into SQLite
+                │     load_db.py        │   
                 │   (sql/schema.sql)    │
                 └──────────┬───────────┘
                            ▼
@@ -65,14 +66,14 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
                            │
     ┌──────────────────────┼───────────────────────┐
     ▼                      ▼                        ▼
-    aggregations.sql     window_functions.sql      cohort_analysis.sql
+aggregations.sql     window_functions.sql      cohort_analysis.sql
 (Q1-Q6)              (Q7-Q9, Q16)               (Q10-Q15)
-│                      │                        │
-└──────────────────────┴────────────────────────┘
-▼
-┌──────────────────────┐
-│    report_cli.py      │   Business reports on demand
-└──────────────────────┘
+ │                      │                        │
+ └──────────────────────┴────────────────────────┘
+                       ▼
+     ┌──────────────────────┐
+     │    report_cli.py     │   Business reports on demand
+     └──────────────────────┘
 ```
 ---
 
@@ -218,6 +219,12 @@ All verified with passing automated tests in `test_edge_cases.py`.
 - Fuzzy-match product names to catch near-duplicates beyond casing/spacing differences
 
 ---
+**Author:** Nidhi Bansal · 
+Data Engineer Intern at Celebal Technologies 
 
-Author 
-Nidhi Bansal
+
+
+
+
+
+
