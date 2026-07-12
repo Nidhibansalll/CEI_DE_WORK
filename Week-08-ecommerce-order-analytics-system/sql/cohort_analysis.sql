@@ -1,13 +1,6 @@
--- cohort_analysis.sql
--- Author: Nidhi
--- Queries 10-15 from the brief (Advanced: multi-level CTEs, NTILE, YoY,
--- FIRST/LAST value, cumulative distribution, cohort retention)
--- Run with: sqlite3 ecommerce.db < sql/cohort_analysis.sql
+-- Queries 10-15 from the brief.
 
--- ===========================================================================
--- Q10. Multi-level CTE: monthly revenue per customer -> bucket into
--- High/Medium/Low -> count customers per bucket per month
--- ===========================================================================
+-- Q10. Multi-level CTE: monthly revenue per customer -> bucket into High/Medium/Low -> count customers per bucket per month
 WITH monthly_customer_revenue AS (
     SELECT
         o.customer_id,
@@ -38,11 +31,7 @@ FROM categorised
 GROUP BY order_month, revenue_category
 ORDER BY order_month, revenue_category;
 
-
--- ===========================================================================
 -- Q11. NTILE(4) - divide customers into quartiles based on lifetime value
--- Platinum = quartile 4 (top spenders), Bronze = quartile 1
--- ===========================================================================
 WITH customer_lifetime_value AS (
     SELECT
         c.customer_id,
@@ -72,13 +61,7 @@ SELECT
 FROM quartiled
 ORDER BY total_value DESC;
 
-
--- ===========================================================================
--- Q12. Year-over-year comparison: each month's revenue vs same month
--- last year. I self-join the monthly revenue CTE to itself, shifted by
--- 12 months, and use LEFT JOIN + NULLIF so "no data last year" doesn't
--- crash the growth % calc, it just returns NULL for yoy_growth_percent.
--- ===========================================================================
+-- Q12.Compare each month's revenue with same month previous year. Show: year, month, revenue, prev_year_revenue, yoy_growth_percent,Handle cases where previous year data doesn't exist.
 WITH monthly_revenue AS (
     SELECT
         CAST(strftime('%Y', o.order_date) AS INTEGER) AS year,
@@ -103,12 +86,8 @@ LEFT JOIN monthly_revenue prev
     ON prev.year = cur.year - 1 AND prev.month = cur.month
 ORDER BY cur.year, cur.month;
 
+-- Q13.For each customer, show their first purchased category and most recent purchased category. Flag if they are different (category_shift = 'Yes'/'No')
 
--- ===========================================================================
--- Q13. First/last purchased category per customer, flag category_shift
--- FIRST_VALUE / LAST_VALUE need a full frame spec in SQLite to actually
--- look at the whole partition (default frame stops at current row).
--- ===========================================================================
 WITH customer_category_orders AS (
     SELECT
         o.customer_id,
@@ -135,10 +114,7 @@ SELECT DISTINCT
 FROM customer_category_orders
 ORDER BY customer_id;
 
-
--- ===========================================================================
 -- Q14. Cumulative distribution: % of total revenue from top N% of customers
--- ===========================================================================
 WITH customer_revenue AS (
     SELECT
         o.customer_id,
@@ -164,12 +140,12 @@ SELECT
 FROM ranked
 ORDER BY revenue DESC;
 
+-- Q15. Group customers by their registration month (cohort).
+-- For each cohort, calculate:
+-- How many ordered in month 0 (registration month)
+-- How many ordered in month 1, month 2, month 3
+-- Retention rate for each month
 
--- ===========================================================================
--- Q15. Cohort analysis: group customers by registration month, then track
--- how many ordered in month 0 (reg month), month 1, month 2, month 3, and
--- the retention rate for each.
--- ===========================================================================
 WITH cohorts AS (
     SELECT
         customer_id,
