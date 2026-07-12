@@ -1,0 +1,16 @@
+============================================================
+MONTHLY REPORT: 2025-11-01 to 2025-11-30
+============================================================
+Total Orders     : 80
+Total Revenue    : Rs. 5,144,490.79
+Unique Customers : 69
+
+Top 3 Products:
+  1. Region Academic - Rs. 101,283.43
+  2. Article Women - Rs. 89,080.86
+  3. Only Bedding - Rs. 85,798.90
+
+Comparison with previous period (2025-10-02 to 2025-10-31):
+  Orders change  : 60.0%
+  Revenue change : 67.9%
+============================================================
