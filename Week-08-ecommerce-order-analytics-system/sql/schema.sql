@@ -1,0 +1,57 @@
+-- schema.sql
+-- Author: Nidhi
+-- Project: E-Commerce Order Analytics System
+--
+-- Note: I load the cleaned CSVs into these tables using scripts/load_db.py
+-- (pandas .to_sql), so this schema is mainly here to (a) document the
+-- structure clearly, and (b) enforce basic constraints + foreign keys in
+-- case someone wants to load the data a different way (e.g. sqlite3 .import).
+
+PRAGMA foreign_keys = ON;
+
+DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS customers;
+
+CREATE TABLE customers (
+    customer_id       INTEGER PRIMARY KEY,
+    customer_name     TEXT NOT NULL,
+    email             TEXT,
+    registration_date TEXT,               -- stored as YYYY-MM-DD
+    customer_type     TEXT CHECK (customer_type IN ('REGULAR', 'PREMIUM', 'VIP'))
+);
+
+CREATE TABLE products (
+    product_id    INTEGER PRIMARY KEY,
+    product_name  TEXT NOT NULL,
+    category      TEXT NOT NULL,
+    subcategory   TEXT,
+    cost_price    REAL CHECK (cost_price >= 0)
+);
+
+CREATE TABLE orders (
+    order_id      INTEGER PRIMARY KEY,
+    customer_id   INTEGER,                -- nullable on purpose, some orders have no customer
+    order_date    TEXT NOT NULL,          -- stored as YYYY-MM-DD HH:MM:SS
+    status        TEXT CHECK (status IN ('PLACED','SHIPPED','DELIVERED','CANCELLED','RETURNED')),
+    region_code   TEXT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+CREATE TABLE order_items (
+    item_id           INTEGER PRIMARY KEY,
+    order_id          INTEGER NOT NULL,
+    product_id        INTEGER NOT NULL,
+    quantity          INTEGER NOT NULL,   -- can be negative (returns)
+    unit_price        REAL NOT NULL,
+    discount_percent  REAL CHECK (discount_percent BETWEEN 0 AND 100),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- indexes I added after noticing my queries doing a lot of joins on these columns
+CREATE INDEX idx_orders_customer ON orders(customer_id);
+CREATE INDEX idx_orders_date ON orders(order_date);
+CREATE INDEX idx_items_order ON order_items(order_id);
+CREATE INDEX idx_items_product ON order_items(product_id);
