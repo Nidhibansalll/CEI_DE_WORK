@@ -7,7 +7,6 @@
 ![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-Window%20Functions-4479A1?logo=postgresql&logoColor=white)
 ![CLI](https://img.shields.io/badge/CLI-Reporting%20Tool-333333)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ---
 
