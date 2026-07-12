@@ -1,9 +1,4 @@
 """
-report_cli.py
---------------
-Author: Nidhi
-Project: E-Commerce Order Analytics System (Celebal Intern Mini Project)
-
 A command-line tool that:
 1. Asks for report type (daily/weekly/monthly)
 2. Asks for a date range (or lets daily/weekly/monthly pick a sensible
@@ -12,17 +7,6 @@ A command-line tool that:
 4. Prints total orders, revenue, unique customers, top 3 products, and
    a % change comparison against the immediately preceding period of
    the same length
-
-Only sqlite3 is used, as required by the brief - no pandas here.
-
-Usage:
-    python3 report_cli.py
-    python3 report_cli.py --type monthly --start 2025-01-01 --end 2025-01-31
-
-I added the optional --type/--start/--end flags on top of the interactive
-prompts so the tool can also be scripted/tested without typing input by
-hand every time (see scripts/test_edge_cases.py and the sample_reports
-folder, which were generated using these flags).
 """
 
 import sqlite3
@@ -37,8 +21,7 @@ def get_period_from_type(report_type: str):
     """
     If the user picks daily/weekly/monthly but doesn't give explicit
     dates, I build a default range ending on the most recent order date
-    in the database (so the demo always has data to show, regardless of
-    what today's real-world date is).
+    in the database.
     """
     conn = sqlite3.connect(DB_PATH)
     max_date = conn.execute("SELECT MAX(order_date) FROM orders").fetchone()[0]
