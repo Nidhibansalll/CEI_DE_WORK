@@ -92,6 +92,35 @@ CEI_DE_WORK/
 │   │
 │   └── README.md
 │
+├── Week-08-ecommerce-order-analytics-system/
+│   ├── data/
+│   │   ├── raw/
+│   │   │   ├── customers.csv
+│   │   │   ├── products.csv
+│   │   │   ├── orders.csv
+│   │   │   └── order_items.csv
+│   │   └── cleaned/
+│   │       ├── customers_clean.csv
+│   │       ├── products_clean.csv
+│   │       ├── orders_clean.csv
+│   │       └── order_items_clean.csv
+│   ├── scripts/
+│   │   ├── generate_data.py
+│   │   ├── clean_data.py
+│   │   ├── load_db.py
+│   │   ├── report_cli.py
+│   │   └── test_edge_cases.py
+│   ├── sql/
+│   │   ├── schema.sql
+│   │   ├── aggregations.sql
+│   │   ├── window_functions.sql
+│   │   └── cohort_analysis.sql
+│   ├── output/
+│   │   ├── data_quality_report.txt
+│   │   └── sample_reports/
+│   ├── ecommerce.db
+│   └── README.md
+│
 └── README.md
 ```
 ## 📅 Weekly Progress
@@ -105,6 +134,7 @@ CEI_DE_WORK/
 | Week 05 | Spark-assignment | Apache Spark — DataFrame cleaning, transformation & aggregation| Python, Jupyter,Spark  |  |
 | Week 06 | Apache Spark — Architecture & Pipelines | Spark Architecture, Lazy Evaluation, Lineage Graph, CSV vs Parquet, Predicate Pushdown, Read→Transform→Filter→Write Pipeline | Python, Jupyter, PySpark |  |
 | Week 07 | Delta Lake (SCD Type-1) | Delta Tables, ACID Transactions, MERGE INTO, Incremental Loading, SCD Type-1 | Apache Spark, Delta Lake, Databricks |
+| Week 08 | E-Commerce Order Analytics System | Data Generation, Data Cleaning, Referential Integrity, SQLite, Window Functions, CTEs, Cohort Analysis, CLI Tooling | Python, Pandas, SQLite |  |
 ---
 
 ## 🔑 Key Highlights
@@ -163,7 +193,17 @@ CEI_DE_WORK/
 - Applied **MERGE INTO** to implement **Slowly Changing Dimension (SCD Type-1)** by updating existing rows and inserting new ones atomically.
 - Validated the final Delta table by verifying row counts, updates, inserts, and duplicate-free primary keys.
 - Demonstrated Delta Lake features including **ACID Transactions**, **Schema Enforcement**, and efficient incremental data processing.
-  
+
+### 📌 Week 08 — E-Commerce Order Analytics System
+
+- Built an end-to-end **order analytics pipeline** — data generation → cleaning → SQLite warehouse → SQL analysis → CLI reporting
+- Generated **4 realistic datasets (2,900+ rows total)** with intentional data-quality issues: missing customer IDs, inconsistent date formats, invalid emails, negative quantities, orphan records, and duplicate rows
+- Wrote cleaning functions (`clean_orders()`, `clean_products()`, `validate_emails()`, `check_referential_integrity()`) that fix what can be fixed and flag what can't be silently fixed
+- Designed the data generator so referential integrity holds **by construction** — order_items always reference a real order, except for a small number of rows deliberately broken to test the integrity-check logic
+- Wrote **16 SQL queries** across basic aggregations, intermediate business logic, and advanced analytics — including running totals, `DENSE_RANK`, `LAG`/`LEAD`, `NTILE` quartiles, year-over-year growth, and full cohort retention analysis
+- Debugged a real SQLite quirk: `FIRST_VALUE`/`LAST_VALUE` need an explicit window frame (`ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`) or they silently return the wrong row
+- Built a **command-line reporting tool** (using only `sqlite3`, no ORM) that generates daily/weekly/monthly business summaries with period-over-period % change
+- Wrote automated edge-case tests as plain Python functions, verifying behavior for orphan foreign keys, invalid discounts, zero quantities, and future-dated orders
 ---
 ## 📊 Skills Gained So Far
 
@@ -188,6 +228,10 @@ CEI_DE_WORK/
 |📦 File Formats| CSV vs Parquet, Columnar Storage, Predicate Pushdown|
 | 🏞️ Delta Lake | Delta Tables, ACID Transactions, MERGE INTO, Schema Enforcement |
 | 🔄 Incremental Processing | CDC, Upserts, SCD Type-1, Delta Merge Operations |
+| 🗃️ Data Warehousing | SQLite Schema Design, Primary/Foreign Keys, CHECK Constraints, Indexing |
+| 🧼 Data Quality Engineering | Referential Integrity Checks, Deduplication, Data Validation Reports |
+| 🪟 Advanced SQL | NTILE, FIRST_VALUE/LAST_VALUE, Multi-level CTEs, Cohort Retention Analysis |
+| 🖥️ CLI Tooling | argparse, Interactive Prompts, Period-over-Period Comparison Logic |
 ---
 
 ## 🧠 Learnings & Reflections
@@ -214,7 +258,7 @@ CEI_DE_WORK/
 - Practiced designing a realistic incremental (CDC-style) batch — a mix of updated existing rows and genuinely new rows, rather than arbitrary random data.
 - Learned that validation is what makes a pipeline trustworthy — checking exact row counts and duplicate keys after merge is what proves the operation worked, not just an assumption.
 - Understood why working at the natural row-level grain of a dataset (rather than forcing an aggregation the task didn't ask for) keeps a MERGE pipeline simpler and closer to real-world usage.
-
+- Realized that "cleaning" data isn't the same as "deleting anything unusual" — some messy-looking data (like negative quantities for returns, or future order dates for scheduled orders) is actually meaningful business information that should be flagged, not removed.
 
 ---
 
