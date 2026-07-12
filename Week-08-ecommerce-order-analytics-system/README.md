@@ -37,7 +37,7 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
 | 🥉 **Bronze** (raw) | Untouched, messy generated data — the "as received from source" layer | `data/raw/` |
 | 🥈 **Silver** (cleaned) | Validated, deduplicated, standardized data — safe to build reports on | `data/cleaned/` |
 | 🥇 **Gold** (analytics) | Query-ready SQLite warehouse + business-level SQL outputs | `ecommerce.db`, `sql/` |
-
+```
 ┌─────────────────────┐
                 │   generate_data.py   │   Creates messy sample data
                 └──────────┬───────────┘
@@ -73,6 +73,7 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
 ┌──────────────────────┐
 │    report_cli.py      │   Business reports on demand
 └──────────────────────┘
+```
 ---
 
 ## 📁 Project Structure
