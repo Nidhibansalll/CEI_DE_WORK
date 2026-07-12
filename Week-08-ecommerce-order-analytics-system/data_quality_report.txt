@@ -1,0 +1,23 @@
+DATA QUALITY REPORT
+Generated: 2026-07-12 17:32:52.629482
+============================================================
+
+[CUSTOMERS]
+  - 10 customers have an invalid email format
+
+[PRODUCTS]
+  - 66 product_name values normalised (spacing/case)
+
+[ORDERS]
+  - 79 orders missing customer_id (5.3%)
+  - 2 orders have a future order_date (ids: [1499, 1500])
+
+[ORDER_ITEMS]
+  - 12 order_items rows reference an order_id not in orders.csv (item_ids: [3739, 3740, 3741, 3742, 3743, 3744, 3745, 3746, 3747, 3748, 3749, 3750])
+  - 15 exact duplicate order_items rows removed (kept first occurrence)
+  - 127 rows have negative quantity (returns, kept as-is)
+  - 20 rows have quantity = 0 (kept, flagged for review)
+  - 15 rows had discount_percent outside 0-100, capped
+
+[EMAIL VALIDATION]
+  - invalid customer emails: [79, 98, 152, 174, 178, 286, 412, 467, 503, 577]
