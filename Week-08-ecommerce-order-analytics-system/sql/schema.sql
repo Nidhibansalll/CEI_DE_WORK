@@ -1,19 +1,4 @@
--- schema.sql
--- Author: Nidhi
--- Project: E-Commerce Order Analytics System
---
--- Note: I load the cleaned CSVs into these tables using scripts/load_db.py
--- (pandas .to_sql), so this schema is mainly here to (a) document the
--- structure clearly, and (b) enforce basic constraints + foreign keys in
--- case someone wants to load the data a different way (e.g. sqlite3 .import).
-
 PRAGMA foreign_keys = ON;
-
-DROP TABLE IF EXISTS order_items;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS customers;
-
 CREATE TABLE customers (
     customer_id       INTEGER PRIMARY KEY,
     customer_name     TEXT NOT NULL,
@@ -32,7 +17,7 @@ CREATE TABLE products (
 
 CREATE TABLE orders (
     order_id      INTEGER PRIMARY KEY,
-    customer_id   INTEGER,                -- nullable on purpose, some orders have no customer
+    customer_id   INTEGER,                
     order_date    TEXT NOT NULL,          -- stored as YYYY-MM-DD HH:MM:SS
     status        TEXT CHECK (status IN ('PLACED','SHIPPED','DELIVERED','CANCELLED','RETURNED')),
     region_code   TEXT,
