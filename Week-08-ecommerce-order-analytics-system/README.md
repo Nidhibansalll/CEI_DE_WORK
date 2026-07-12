@@ -76,7 +76,7 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
 ---
 
 ## 📁 Project Structure
-'''
+```
 ecommerce-analytics-system/
 ├── data/
 │   ├── raw/                    # 🥉 Bronze 
@@ -105,7 +105,7 @@ ecommerce-analytics-system/
 │   └── sample_reports/            
 ├── ecommerce.db                   # 🥇 Gold 
 └── README.md
-'''
+```
 ---
 
 ## 🗃️ Data Model
