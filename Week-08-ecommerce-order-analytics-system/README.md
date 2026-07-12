@@ -1,36 +1,21 @@
-<div align="center">
-
 # 🛒 E-Commerce Order Analytics System
 
-**End-to-end data pipeline: messy raw data → cleaned data → SQL analytics → CLI reports**
+> Building an end-to-end order analytics pipeline — covering data generation, cleaning, SQLite warehousing, advanced SQL analysis, and CLI reporting, for the **Celebal Technologies Intern Mini Project**.
 
-*Celebal Technologies Intern Mini Project*
-
-`Python` · `Pandas` · `SQLite` · `SQL Window Functions` · `CLI Tooling`
-
-**Author:** Nidhi
-
-</div>
-
----
-
-## 📌 Table of Contents
-
-- [Overview](#-overview)
-- [Architecture](#-architecture)
-- [Folder Structure](#-folder-structure)
-- [Data Model](#-data-model)
-- [How to Run](#-how-to-run)
-- [What Was Built (Part by Part)](#-what-was-built-part-by-part)
-- [SQL Queries — Full List](#-sql-queries--full-list)
-- [Key Design Decisions](#-key-design-decisions)
-- [Edge Case Handling](#-edge-case-handling)
-- [Sample Output](#-sample-output)
-- [Challenges & What I Learned](#-challenges--what-i-learned)
-- [Future Improvements](#-future-improvements)
+![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Cleaning-150458?logo=pandas&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-Window%20Functions-4479A1?logo=postgresql&logoColor=white)
+![CLI](https://img.shields.io/badge/CLI-Reporting%20Tool-333333)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ---
 
+## 📌 Objective
+
+Build a small but complete **order analytics system** for an e-commerce company — generate realistic (and intentionally messy) order data, clean it, load it into a SQLite warehouse, analyze it with 16 SQL queries ranging from basic aggregations to window functions and cohort retention, and serve business summaries through a command-line reporting tool.
+
+---
 ## 🧾 Overview
 
 An e-commerce company's order data comes in messy from multiple sources — missing customer IDs, inconsistent date formats, invalid emails, orphaned records, and more. This project builds a small but complete pipeline that:
@@ -41,8 +26,6 @@ An e-commerce company's order data comes in messy from multiple sources — miss
 4. **Analyzes** it with 16 SQL queries — from basic aggregations to window functions and cohort retention
 5. **Serves** business summaries through a command-line reporting tool
 6. **Verifies** correctness with edge-case tests
-
-The goal wasn't just "write queries that run" — it was to build something that behaves sensibly when the data is wrong, the way a real pipeline has to.
 
 ---
 
@@ -93,34 +76,35 @@ This project loosely follows a **medallion architecture** (Bronze → Silver →
 └──────────────────────┘
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure
+
 ecommerce-analytics-system/
 ├── data/
-│   ├── raw/                    # 🥉 Bronze — messy generated CSVs
+│   ├── raw/                    # 🥉 Bronze 
 │   │   ├── customers.csv
 │   │   ├── products.csv
 │   │   ├── orders.csv
 │   │   └── order_items.csv
-│   └── cleaned/                 # 🥈 Silver — cleaned CSVs
+│   └── cleaned/                 # 🥈 Silver 
 │       ├── customers_clean.csv
 │       ├── products_clean.csv
 │       ├── orders_clean.csv
 │       └── order_items_clean.csv
 ├── scripts/
-│   ├── generate_data.py         # Part 1 — data generation
-│   ├── clean_data.py            # Part 2 — cleaning + data quality report
-│   ├── load_db.py                # Loads cleaned CSVs into SQLite
-│   ├── report_cli.py             # Part 4 — CLI reporting tool
-│   └── test_edge_cases.py        # Part 5 — edge case tests
+│   ├── generate_data.py         
+│   ├── clean_data.py           
+│   ├── load_db.py               
+│   ├── report_cli.py             
+│   └── test_edge_cases.py       
 ├── sql/
-│   ├── schema.sql                 # Table definitions, constraints, indexes
-│   ├── aggregations.sql           # Queries 1-6 (basic + intermediate)
-│   ├── window_functions.sql       # Queries 7-9, 16 (window fns, self-join)
-│   └── cohort_analysis.sql        # Queries 10-15 (CTEs, NTILE, YoY, cohorts)
+│   ├── schema.sql                
+│   ├── aggregations.sql           
+│   ├── window_functions.sql       
+│   └── cohort_analysis.sql       
 ├── output/
-│   ├── data_quality_report.txt    # 🥇 Gold — issue log from cleaning
-│   └── sample_reports/            # Sample CLI + SQL output for reference
-├── ecommerce.db                   # 🥇 Gold — generated SQLite warehouse
+│   ├── data_quality_report.txt    # 🥇 Gold 
+│   └── sample_reports/            
+├── ecommerce.db                   # 🥇 Gold 
 └── README.md
 
 ---
@@ -141,40 +125,7 @@ One customer → many orders → many order_items → each order_item references
 
 ---
 
-## ▶️ How to Run
-
-```bash
-cd ecommerce-analytics-system
-pip install pandas faker
-
-# 1. Generate messy raw data (4 CSVs, 500+ rows each)
-python3 scripts/generate_data.py
-
-# 2. Clean it + generate the data quality report
-python3 scripts/clean_data.py
-
-# 3. Build the SQLite database
-python3 scripts/load_db.py
-
-# 4. Run the SQL analysis
-sqlite3 ecommerce.db < sql/aggregations.sql
-sqlite3 ecommerce.db < sql/window_functions.sql
-sqlite3 ecommerce.db < sql/cohort_analysis.sql
-
-# 5. Run the CLI report tool
-python3 scripts/report_cli.py
-# or non-interactive:
-python3 scripts/report_cli.py --type monthly --start 2025-11-01 --end 2025-11-30
-
-# 6. Run the edge case tests
-python3 scripts/test_edge_cases.py
-```
-
-Steps 2 onward use only the Python standard library (`sqlite3`, `re`, `datetime`) plus `pandas`. `report_cli.py` intentionally uses **only `sqlite3`**, per the brief's requirement for Part 4.
-
----
-
-## ✅ What Was Built (Part by Part)
+## ✅ What Was Built 
 
 | Part | Requirement | Delivered in |
 |---|---|---|
@@ -186,7 +137,7 @@ Steps 2 onward use only the Python standard library (`sqlite3`, `re`, `datetime`
 
 ---
 
-## 🧮 SQL Queries — Full List
+## 🧮 SQL Queries
 
 **Basic (`aggregations.sql`)**
 1. Total revenue per category
@@ -249,26 +200,6 @@ All verified with passing automated tests in `test_edge_cases.py`.
 
 ---
 
-## 🖥️ Sample Output
-============================================================
-MONTHLY REPORT: 2025-11-01 to 2025-11-30
-Total Orders     : 80
-Total Revenue    : Rs. 5,144,490.79
-Unique Customers : 69
-Top 3 Products:
-
-Region Academic - Rs. 101,283.43
-Article Women - Rs. 89,080.86
-Only Bedding - Rs. 85,798.90
-
-Comparison with previous period (2025-10-02 to 2025-10-31):
-Orders change  : 60.0%
-Revenue change : 67.9%
-
-More sample output (data quality report, weekly reports, raw SQL results) is in `output/sample_reports/`.
-
----
-
 ## 🧠 Challenges & What I Learned
 
 - **Cleaning is a judgment call, not a mechanical process.** The "right" fix depends on what the data will be used for downstream — not just whether a value looks odd.
@@ -288,8 +219,5 @@ More sample output (data quality report, weekly reports, raw SQL results) is in 
 
 ---
 
-<div align="center">
-
-Built as part of the Celebal Technologies Intern Mini Project.
-
-</div>
+Author 
+Nidhi Bansal
