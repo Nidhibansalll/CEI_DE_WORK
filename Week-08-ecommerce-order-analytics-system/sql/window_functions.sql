@@ -1,11 +1,6 @@
--- window_functions.sql
--- Author: Nidhi
 -- Queries 7, 8, 9, and 16 from the brief (Advanced: Window Functions)
--- Run with: sqlite3 ecommerce.db < sql/window_functions.sql
 
--- ===========================================================================
 -- Q7. Running total of revenue per region, ordered by date
--- ===========================================================================
 WITH daily_region_revenue AS (
     SELECT
         o.region_code,
@@ -28,11 +23,7 @@ SELECT
 FROM daily_region_revenue
 ORDER BY region_code, order_day;
 
-
--- ===========================================================================
--- Q8. Rank products by total revenue within each category (DENSE_RANK
--- so tied revenue gets the same rank, no gaps)
--- ===========================================================================
+-- Q8. Rank products by total revenue within each category 
 WITH product_revenue AS (
     SELECT
         p.category,
@@ -51,11 +42,7 @@ SELECT
 FROM product_revenue
 ORDER BY category, rank_in_category;
 
-
--- ===========================================================================
--- Q9. Days between consecutive orders per customer (LAG), flag "At Risk"
--- if their average gap is > 30 days.
--- ===========================================================================
+-- Q9. Days between consecutive orders per customer (LAG), flag "At Risk" if their average gap is > 30 days.
 WITH customer_orders AS (
     SELECT
         customer_id,
@@ -92,13 +79,9 @@ FROM with_gap w
 JOIN avg_gap a ON a.customer_id = w.customer_id
 ORDER BY w.customer_id, w.order_date;
 
-
--- ===========================================================================
 -- Q16. Self-join: products frequently bought together
--- I self-join order_items to itself on order_id, forcing product_a.id <
--- product_b.id so each pair only shows up once (A-B, never also B-A),
--- and product_a <> product_b so a product is never paired with itself.
--- ===========================================================================
+-- I self-join order_items to itself on order_id, forcing product_a.id < product_b.id so each pair only shows up once (A-B, never also B-A), and product_a <> product_b so a 
+ -- product is never paired with itself.
 SELECT
     pa.product_name AS product_a,
     pb.product_name AS product_b,
