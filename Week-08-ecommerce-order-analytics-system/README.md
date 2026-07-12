@@ -111,16 +111,44 @@ ecommerce-analytics-system/
 ---
 
 ## 🗃️ Data Model
-customers                orders                   order_items              products
-──────────                ──────                   ───────────              ────────
-customer_id (PK)  ┐       order_id (PK)     ┐      item_id (PK)             product_id (PK)
-customer_name     │       customer_id (FK) ─┘      order_id (FK)  ─┐        product_name
-email              │      order_date               product_id (FK)─┼───┐    category
-registration_date  │      status                   quantity        │   │    subcategory
-customer_type      └────► region_code               unit_price      │   │    cost_price
-discount_percent│   │
-▼   ▼
-orders products
+
+```mermaid
+erDiagram
+    CUSTOMERS ||--o{ ORDERS : places
+    ORDERS ||--o{ ORDER_ITEMS : contains
+    PRODUCTS ||--o{ ORDER_ITEMS : "referenced by"
+
+    CUSTOMERS {
+        int customer_id PK
+        string customer_name
+        string email
+        date registration_date
+        string customer_type
+    }
+    ORDERS {
+        int order_id PK
+        int customer_id FK
+        datetime order_date
+        string status
+        string region_code
+    }
+    ORDER_ITEMS {
+        int item_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        float unit_price
+        float discount_percent
+    }
+    PRODUCTS {
+        int product_id PK
+        string product_name
+        string category
+        string subcategory
+        float cost_price
+    }
+```
+---
 
 One customer → many orders → many order_items → each order_item references one product.
 
@@ -140,23 +168,27 @@ One customer → many orders → many order_items → each order_item references
 
 ## 🧮 SQL Queries
 
-**Basic (`aggregations.sql`)**
+#### Basic (`aggregations.sql`)
+
 1. Total revenue per category
 2. Top 10 customers by order value
 3. Month-wise order count, last 12 months
 
-**Intermediate (`aggregations.sql`)**
+#### Intermediate (`aggregations.sql`)
+
 4. Customers who never had a delivered order
 5. Products with more returns than purchases
 6. Return rate per category
 
-**Advanced — Window Functions (`window_functions.sql`)**
+#### Advanced — Window Functions (`window_functions.sql`)
+
 7. Running total of revenue per region
 8. `DENSE_RANK` — top products per category
 9. `LAG` — days between consecutive orders, "At Risk" flag
 16. Self-join — products frequently bought together
 
-**Advanced — CTEs & Cohorts (`cohort_analysis.sql`)**
+#### Advanced — CTEs & Cohorts (`cohort_analysis.sql`)
+
 10. Multi-level CTE — monthly revenue buckets (High/Medium/Low)
 11. `NTILE(4)` — customer quartiles (Platinum/Gold/Silver/Bronze)
 12. Year-over-year revenue comparison
@@ -164,6 +196,7 @@ One customer → many orders → many order_items → each order_item references
 14. Cumulative revenue distribution (Pareto-style)
 15. Cohort retention analysis (month 0-3)
 
+---
 ---
 
 ## 🎯 Key Design Decisions
